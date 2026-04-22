@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiahan | Analytics Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f3e7e9 0%, #e3eeff 50%, #eef2f3 100%);
+            background-size: 400% 400%;
+            animation: softBreatheBG 20s ease-in-out infinite;
+            color: #2d3748;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        @keyframes softBreatheBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 0.5px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.03);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .squircle-static {
+            border-radius: 22%;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+            border: 2px solid rgba(255,255,255,0.8);
+        }
+
+        .timeline-border {
+            border-right: 2px solid rgba(255,255,255,0.4);
+        }
+        .timeline-node {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+            color: #718096;
+        }
+        .timeline-node::after {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 50%;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border: 3px solid #e2e8f0;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 10;
+        }
+        .timeline-node.active-node {
+            font-weight: 700;
+            color: #553c9a;
+            font-size: 1.15rem;
+        }
+        .timeline-node.active-node::after {
+            background: #805ad5;
+            border-color: #fff;
+            width: 16px;
+            height: 16px;
+            right: -27px;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 20px rgba(128, 90, 213, 0.4);
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #a0aec0;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .skill-tag {
+            font-size: 11px;
+            background: rgba(255,255,255,0.6);
+            padding: 4px 12px;
+            border-radius: 12px;
+            color: #555;
+            border: 0.5px solid rgba(255,255,255,0.9);
+            font-weight: 500;
+        }
+        
+        .footer-dock {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            padding: 12px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .phone-popup {
+            position: absolute;
+            bottom: 80px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: none;
+            animation: popUp 0.3s ease;
+        }
+
+        @keyframes popUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .text-gradient-subtle {
+            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-100 selection:text-purple-900">
+
+    <nav class="fixed top-0 w-full z-50 flex justify-center py-6">
+        <div class="glass-panel px-8 py-3 flex space-x-10 text-[13px] font-medium tracking-wide text-gray-500">
+            <a href="#" class="hover:text-purple-600 transition-colors">HOME</a>
+            <a href="#experience" class="hover:text-purple-600 transition-colors">EXPERIENCE</a>
+            <a href="#work-cases" class="hover:text-purple-600 transition-colors">WORK CASES</a>
+            <a href="#skills" class="hover:text-purple-600 transition-colors">SKILLS</a>
+            <a href="#contact" class="hover:text-purple-600 transition-colors">CONTACT</a>
+        </div>
+    </nav>
+
+    <section class="max-w-5xl mx-auto px-8 pt-44 pb-32 flex flex-col-reverse md:flex-row items-center gap-12">
+        <div class="flex-1 space-y-6">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-800">Hi, I’m <span class="text-gradient-subtle">Jiahan</span>.</h1>
+            <div class="space-y-4 text-[15px] leading-relaxed text-gray-600 md:pr-10">
+                <p>I’m a Business Analytics student with a marketing background and hands-on industry experience, graduating soon.</p>
+                <p>This portfolio showcases selected cases demonstrating how I use data-backed insights to support marketing decisions and growth.</p>
+                <p>Feel free to explore my work, and I’d be happy to connect！</p>
+            </div>
+            <div class="flex flex-col space-y-3 text-sm font-medium text-gray-500 pt-4">
+                <a href="mailto:yangjiahan1216@gmail.com" class="flex items-center gap-3 hover:text-purple-600 transition-colors w-fit">
+                    <i class="fa-regular fa-envelope"></i> yangjiahan1216@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/jiahan-yang/" target="_blank" class="flex items-center gap-3 hover:text-blue-600 transition-colors w-fit">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+                </a>
+            </div>
+            <div class="pt-6">
+                <button onclick="document.getElementById('experience').scrollIntoView()" class="text-[11px] font-bold tracking-[0.2em] text-gray-400 hover:text-purple-600 transition-colors uppercase flex items-center gap-2">
+                    Explore My Portfolio <i class="fa-solid fa-arrow-down animate-bounce opacity-50"></i>
+                </button>
+            </div>
+        </div>
+        <div class="w-56 md:w-64 flex-shrink-0">
+            <img src="profile.jpg" alt="Jiahan Yang" class="squircle-static w-full h-auto object-cover bg-white/20 shadow-lg">
+        </div>
+    </section>
+
+    <section id="experience" class="max-w-5xl mx-auto px-8 py-24">
+        <div class="text-left mb-12"><span class="section-title">Experience Timeline</span></div>
+        <div class="flex flex-col md:flex-row gap-12">
+            <div class="w-full md:w-1/5 timeline-border flex flex-col items-end pr-8 space-y-12 py-6 text-right">
+                <div class="timeline-node active-node" onclick="updateTimeline(0)">Present</div>
+                <div class="timeline-node" onclick="updateTimeline(1)">2024</div>
+                <div class="timeline-node" onclick="updateTimeline(2)">2023</div>
+                <div class="timeline-node" onclick="updateTimeline(3)">2022</div>
+                <div class="timeline-node" onclick="updateTimeline(4)">2020</div>
+            </div>
+            <div class="w-full md:w-4/5"><div id="timeline-card" class="glass-panel p-10 min-h-[320px] flex flex-col justify-center"></div></div>
+        </div>
+    </section>
+
+    <section id="work-cases" class="max-w-5xl mx-auto px-8 py-24">
+        <div class="text-left mb-12"><span class="section-title">Selected Work Cases</span></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-panel p-8 md:col-span-2 hover:bg-white/60 transition-all">
+                <h3 class="text-2xl font-bold text-gray-800 tracking-tight mb-8">Insta360 | Enterprise Marketing & Growth</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h4 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Campaigns & Social</h4>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.linkedin.com/posts/insta360_insta360-horizons2024-dronedeploy-activity-7252679786601332736-WMDs" target="_blank" class="group flex items-center gap-2 text-[13px] text-gray-600 hover:text-purple-600 transition-colors"><i class="fa-brands fa-linkedin text-blue-600 opacity-70 group-hover:opacity-100"></i> Horizons 2024 Event Poster</a></li>
+                            <li><a href="https://www.linkedin.com/posts/insta360_insta360enterprise-horizons2024-dronedeploy-ugcPost-7259055059198451714-i4Ub" target="_blank" class="group flex items-center gap-2 text-[13px] text-gray-600 hover:text-purple-600 transition-colors"><i class="fa-brands fa-linkedin text-blue-600 opacity-70 group-hover:opacity-100"></i> Offline Event Promotion</a></li>
+                            <li><a href="https://www.linkedin.com/posts/insta360_insta360x5-insta360enterprise-realitycapture-activity-7328781221755346944-xwFB" target="_blank" class="group flex items-center gap-2 text-[13px] text-gray-600 hover:text-purple-600 transition-colors"><i class="fa-brands fa-linkedin text-blue-600 opacity-70 group-hover:opacity-100"></i> New Camera Launch</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Blog & Case Studies</h4>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.insta360.com/blog/enterprise/insta360-proptech-labs-property-inspections.html" target="_blank" class="group flex items-center gap-2 text-[13px] text-gray-600 hover:text-purple-600 transition-colors"><i class="fa-solid fa-file-lines text-purple-400 opacity-70 group-hover:opacity-100"></i> PropTech Labs: Property Inspections</a></li>
+                            <li><a href="https://www.insta360.com/blog/enterprise/insta360-A-DAM-over-the-edge.html" target="_blank" class="group flex items-center gap-2 text-[13px] text-gray-600 hover:text-purple-600 transition-colors"><i class="fa-solid fa-file-lines text-purple-400 opacity-70 group-hover:opacity-100"></i> A-DAM: Over the Edge Series</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-8">
+                <div class="glass-panel p-8 flex-1 hover:bg-white/60 transition-all">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">DJI | Education</h3>
+                    <ul class="space-y-4">
+                        <li><a href="https://www.dji.com/edu-hub" target="_blank" class="group flex items-center gap-3 text-[13px] text-gray-600 hover:text-pink-600 transition-colors"><i class="fa-solid fa-globe text-pink-400 opacity-70 group-hover:opacity-100"></i> DJI Education Hub</a></li>
+                        <li><a href="https://mp.weixin.qq.com/s/93wF3smU8SU_YxJy3cYIpQ" target="_blank" class="group flex items-center gap-3 text-[13px] text-gray-600 hover:text-green-600 transition-colors"><i class="fa-brands fa-weixin text-green-500 opacity-70 group-hover:opacity-100"></i> Official WeChat Article</a></li>
+                    </ul>
+                </div>
+                <div class="glass-panel p-8 flex-1 hover:bg-white/60 transition-all">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Xiaohongshu</h3>
+                    <a href="http://xhslink.com/o/9yANT8HfxSy" target="_blank" class="group flex items-center gap-3 bg-purple-50/50 p-3 rounded-xl border border-purple-100/50">
+                        <i class="fa-solid fa-heart text-red-400 animate-pulse"></i>
+                        <div><span class="text-[13px] font-bold text-gray-700 block">16,000+ Likes</span><span class="text-[11px] text-gray-500">View Note Sample</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="max-w-5xl mx-auto px-8 py-24">
+        <div class="mb-12 text-left"><span class="section-title">Skills & Analysis Process</span></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-panel p-7 flex flex-col justify-center">
+                <h4 class="font-bold text-gray-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-database text-blue-400/80"></i> Data Preparation & Analysis</h4>
+                <p class="text-sm text-gray-500 mb-4">Handling raw data integrity and exploratory analysis.</p>
+                <div class="flex flex-wrap gap-2"><span class="skill-tag">SQL</span><span class="skill-tag">Excel</span><span class="skill-tag">Python (Pandas, NumPy, Matplotlib, Seaborn)</span></div>
+            </div>
+            <div class="glass-panel p-7 flex flex-col justify-center">
+                <h4 class="font-bold text-gray-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench text-purple-400/80"></i> Marketing Tools</h4>
+                <p class="text-sm text-gray-500 mb-4">Expertise in growth and creative platforms.</p>
+                <div class="flex flex-wrap gap-2"><span class="skill-tag">GA4</span><span class="skill-tag">HubSpot</span><span class="skill-tag">Figma</span><span class="skill-tag">Canva</span><span class="skill-tag">Capcut</span></div>
+            </div>
+            <div class="glass-panel p-7 flex flex-col justify-center">
+                <h4 class="font-bold text-gray-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-vial text-pink-400/80"></i> Experimentation</h4>
+                <p class="text-sm text-gray-500 mb-4">Validating hypotheses through rigorous testing.</p>
+                <div class="flex flex-wrap gap-2"><span class="skill-tag">A/B Testing</span><span class="skill-tag">Hypothesis Testing</span><span class="skill-tag">Marketing Attribution</span></div>
+            </div>
+            <div class="glass-panel p-7 flex flex-col justify-center">
+                <h4 class="font-bold text-gray-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-chart-pie text-orange-400/80"></i> Visualization & Storytelling</h4>
+                <p class="text-sm text-gray-500 mb-4">Communicating insights to stakeholders.</p>
+                <div class="flex flex-wrap gap-2"><span class="skill-tag">Tableau</span><span class="skill-tag">Power BI</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-24 flex flex-col items-center">
+        <div class="footer-dock flex gap-12 items-center mb-8">
+            <div id="phone-display" class="phone-popup">+1 206-483-8965</div>
+            <a href="mailto:yangjiahan1216@gmail.com" class="text-xl text-gray-600 hover:text-purple-600 transition-all"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/jiahan-yang/" target="_blank" class="text-xl text-gray-600 hover:text-blue-600 transition-all"><i class="fa-brands fa-linkedin"></i></a>
+            <button onclick="togglePhone()" class="text-xl text-gray-600 hover:text-green-500 outline-none"><i class="fa-solid fa-phone"></i></button>
+        </div>
+        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">THANKS FOR TAKING TIME TO VISIT MY PORTFOLIO.</p>
+    </footer>
+
+    <script>
+        function togglePhone() {
+            const popup = document.getElementById('phone-display');
+            popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
+            if (popup.style.display === 'block') setTimeout(() => { popup.style.display = 'none'; }, 4000);
+        }
+
+        const experienceData = [
+            {
+                role: "Master of Science in Business Analytics", company: "University of Washington", location: "Seattle, WA", period: "Expected June 2026",
+                desc: "<ul class='list-disc pl-5 space-y-2 text-[14px] text-gray-600'><li><b>Relevant Coursework:</b> Data Analysis (SQL, Python), Pricing & Customer Analytics, digital marketing.</li><li><b>Capstone Project:</b> Multi-touch attribution framework for Paylocity to improve marketing ROI.</li></ul>"
+            },
+            {
+                role: "Marketing Specialist & Graduation", company: "2024 Highlights", location: "Shenzhen", period: "2024",
+                desc: `<div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between items-baseline mb-2"><h4 class="font-bold text-gray-800 text-lg">Insta360</h4><span class="text-[11px] bg-gray-50 text-gray-500 px-2 py-1 rounded-full">July 2024 – June 2025</span></div>
+                            <p class="text-xs text-purple-600 mb-2 font-semibold">Marketing Specialist, B2B</p>
+                            <ul class='list-disc pl-5 space-y-1 text-[13px] text-gray-600'>
+                                <li>Led integrated marketing strategy for a new camera launch, contributing 11% of Q4 sales.</li>
+                                <li>Optimized channel allocation, improving MQL volume by 12% under a fixed budget.</li>
+                                <li>Pivoted KOL strategy to short-form videos; top content surpassed 1,000 likes within a week.</li>
+                                <li>Analyzed 1,000+ user feedback entries, driving a 35% increase in followers.</li>
+                            </ul>
+                        </div>
+                        <div class="border-t border-gray-100 pt-6">
+                            <div class="flex justify-between items-baseline mb-2"><h4 class="font-bold text-gray-800 text-lg">Shenzhen University</h4><span class="text-[11px] bg-gray-100 text-gray-600 px-2 py-1 rounded-full">June 2024</span></div>
+                            <ul class='list-disc pl-5 space-y-1 text-[13px] text-gray-600'><li><b>Honors:</b> Outstanding Graduate (Top 5%).</li></ul>
+                        </div>
+                       </div>`
+            },
+            {
+                role: "Growth & Affiliate Internships", company: "2023 Experience", location: "Beijing/Shenzhen", period: "2023",
+                desc: `<div class="space-y-6">
+                        <div><h4 class="font-bold text-gray-800 text-lg">Kuaishou Technology</h4><p class="text-xs text-purple-600 mb-2 font-semibold">Growth Marketing Intern</p><ul class='list-disc pl-5 text-[13px] text-gray-600'><li>A/B tested creative assets to drive 20,000+ DAU growth.</li><li> Conducted attribution analysis to reduce DSP acquisition costs by 37% and re-engagement by 28%.</li></ul></div>
+                        <div class="border-t border-gray-100 pt-4"><h4 class="font-bold text-gray-800 text-lg">BlueFocus Digital</h4><p class="text-xs text-purple-600 mb-2 font-semibold">Affiliate Marketing Intern</p><ul class='list-disc pl-5 text-[13px] text-gray-600'><li>Managed affiliate campaigns for pet brands, improving ROl from1.0 to2.3.</li></ul></div>
+                       </div>`
+            },
+            {
+                role: "Marketing Intern", company: "DJI", location: "Shenzhen", period: "2022",
+                desc: "<ul class='list-disc pl-5 text-[14px] text-gray-600'><li>Managed paid media on Google/Baidu, generating 10,000+ marketing qualified leads.</li><li> Improved email open rates by 75% and CTR by 54% through A/B testing on HubSpot.</li><li>  Supported end-to-end lead generation for events, increasing on-site capture by20%.</li></ul>"
+            },
+            {
+                role: "Undergraduate Study Begins", company: "Shenzhen University", location: "Shenzhen", period: "2020",
+                desc: "<p class='text-[14px] text-gray-600'>Started BA in Advertising, building a foundation in consumer insights.</p>"
+            }
+        ];
+
+        function updateTimeline(index) {
+            document.querySelectorAll('.timeline-node').forEach((node, i) => node.classList.toggle('active-node', i === index));
+            const card = document.getElementById('timeline-card');
+            card.style.opacity = '0';
+            setTimeout(() => {
+                const d = experienceData[index];
+                if (index === 1 || index === 2) {
+                    card.innerHTML = d.desc;
+                } else {
+                    card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4 pb-4 border-b border-gray-100">
+                        <div><h3 class="text-xl font-bold text-gray-800">${d.company}</h3><p class="text-purple-600 font-semibold text-[13px] mt-1">${d.role}</p></div>
+                        <div class="text-right"><span class="text-[11px] font-bold text-gray-400 uppercase block mb-1">${d.location}</span><span class="text-[11px] bg-purple-50 text-purple-600 px-2 py-1 rounded-full">${d.period}</span></div>
+                    </div><div class="leading-relaxed">${d.desc}</div>`;
+                }
+                card.style.opacity = '1';
+            }, 300);
+        }
+        document.addEventListener('DOMContentLoaded', () => updateTimeline(0));
+    </script>
+</body>
+</html>
